@@ -6,4 +6,4 @@ Simple testing in Vue.js using Cypress
 
 `npm run test`
 
-To record: `npm runt record` 
+To record: `npm run record` 
