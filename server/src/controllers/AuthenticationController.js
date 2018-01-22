@@ -11,6 +11,16 @@ function jwtSignUser (user) {
 
 module.exports = {
   async register (req, res) {
+    if (!req.email) {
+      res.status(400).send({
+        error: 'No email provided'
+      })
+    }
+    if (!req.password) {
+      res.status(400).send({
+        error: 'No password provided'
+      })
+    }
     try {
       const user = await User.create(req.body)
       const userJson = user.toJSON()
