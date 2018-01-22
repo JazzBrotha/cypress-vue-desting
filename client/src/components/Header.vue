@@ -2,6 +2,7 @@
   <v-toolbar fixed class="cyan" dark>
     <v-toolbar-title class="mr-4">
       <router-link
+        id="browse-link"
         class="home"
         tag="span"
         :to="{
@@ -26,6 +27,7 @@
 
     <v-toolbar-items>
       <v-btn
+        id="login-link"
         v-if="!$store.state.isUserLoggedIn"
         flat
         dark
@@ -35,6 +37,7 @@
         Login
       </v-btn>
       <v-btn
+        id="register-link"
         v-if="!$store.state.isUserLoggedIn"
         flat
         dark
