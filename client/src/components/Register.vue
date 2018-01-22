@@ -6,11 +6,13 @@
           name="tab-tracker-form"
           autocomplete="off">
           <v-text-field
+            name="email"
             label="Email"
             v-model="email"
           ></v-text-field>
           <br>
           <v-text-field
+            name="password"
             label="Password"
             type="password"
             v-model="password"
@@ -18,10 +20,10 @@
           ></v-text-field>
         </form>
         <br>
-        <div class="danger-alert" v-html="error" />
+        <div id="register-error-message" class="danger-alert" v-html="error" />
         <br>
         <v-btn
-          id="register-btn"
+          name="register"
           dark
           class="cyan"
           @click="register">
