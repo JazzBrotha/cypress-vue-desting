@@ -23,62 +23,70 @@ describe('Register component', () => {
       .type('magicpassword123')
       .should('have.value', 'magicpassword123')
   })
-  it('returns status 400 if no email data', () => {
-    cy.request({
+  it('returns correct error message if no email is provided', () => {
+    cy.server({
       method: 'POST',
-      url: serverRoute,
-      failOnStatusCode: false,
+      status: 400,
       body: {
         password: 'magicpassword123'
+      },
+      response: {
+        error: 'No email provided'
       }
     })
-      .then((response) => {
-        expect(response.status).to.eq(400)
-      })
+    cy.route('/register/')
+      .its('response')
+      .should('have.property', 'error', 'No email provided')
   })
-  it('returns status 400 if no password data', () => {
-    cy.request({
+  it('returns correct error message if no password is provided', () => {
+    cy.server({
       method: 'POST',
-      url: serverRoute,
-      failOnStatusCode: false,
+      status: 400,
       body: {
         email: 'user@user.com'
+      },
+      response: {
+        error: 'No password provided'
       }
     })
-      .then((response) => {
-        expect(response.status).to.eq(400)
-      })
+    cy.route('/register/')
+      .its('response')
+      .should('have.property', 'error', 'No password provided')
   })
-  // it('validates user password in html', () => {
-  //   cy.get('input[name=email]')
-  //   .type('user@user.com')
+  // it('requests register route on server when register button is clicked', () => {
   //   cy.server()
-  //   cy.route({
-  //     method: 'POST',
-  //     url: '/register/',
-  //     status: 400,
-  //     response: {}
-  //   })
-  //     .as('registerUser')
+  //   cy.route('POST', '/register')
+  //     .as('postRegister')
   //   cy.get('button[name=register]').click()
-  //   cy.wait('@registerUser')
-  //   cy.get('#register-error-message').contains('password')
-  // })
-  // it('responds with 400 error if no email', () => {
-  //   cy.server()
-  //   cy.route(
-  //     method: 'POST',
-  //     utls: `${Cypress.env('server')}/register`, {
-  //     email: '',
-  //     password: 'magicpassword123',
-  //     id: '1',
+  //   cy.wait('@postRegister')
+  //   cy.get('@postRegister').then(xhr => {
+  //     expect(xhr.url).to.include('register')
   //   })
   // })
-        //   .as('postRegister')
-      // cy.get('input[name=password]')
-      //   .type()
-      // cy.wait('@postRegister')
-      // cy.get('#register-error-message')
-      //   .should('be.visible')
-      //   .contains('email')
+    // it('responds with status 400 if no email data is passed to server', () => {
+  //   cy.request({
+  //     method: 'POST',
+  //     url: serverRoute,
+  //     failOnStatusCode: false,
+  //     body: {
+  //       password: 'magicpassword123'
+  //     }
+  //   })
+  //     .then((response) => {
+  //       expect(response.status).to.eq(400)
+  //     })
+  // })
+  // it('responds with status 400 if no password data is passed to server ', () => {
+  //   cy.request({
+  //     method: 'POST',
+  //     url: serverRoute,
+  //     failOnStatusCode: false,
+  //     body: {
+  //       email: 'user@user.com'
+  //     }
+  //   })
+  //     .then((response) => {
+  //       expect(response.status).to.eq(400)
+  //     })
+  // })
 })
