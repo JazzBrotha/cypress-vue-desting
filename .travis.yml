@@ -10,8 +10,7 @@ install:
 
 cache:
   directories:
-    - ./client/node_modules
-    - ./server/node_modules
+    node_modules
 
 before_script:
   ## runs the 'start' script which
@@ -29,10 +28,12 @@ before_script:
   ## travis to run this process in the background
   ## else it would block execution and hang travis
   - yarn server --silent &
-  - yarn start -- --silent &
+  - yarn start --silent &
 
 before_install:
  - cd server
+ - yarn install
+ - cd ..
  - cd client
 
 script:
