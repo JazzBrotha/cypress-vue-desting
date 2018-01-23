@@ -35,6 +35,16 @@ module.exports = {
     }
   },
   async login (req, res) {
+    if (!req.body.password) {
+      res.status(400).send({
+        error: 'No password provided'
+      })
+    }
+    if (!req.body.email) {
+      res.status(400).send({
+        error: 'No email provided'
+      })
+    }
     try {
       const {email, password} = req.body
       const user = await User.findOne({
