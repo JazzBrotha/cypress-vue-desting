@@ -53,40 +53,40 @@ describe('Register component', () => {
       .its('response')
       .should('have.property', 'error', 'No password provided')
   })
-  // it('requests register route on server when register button is clicked', () => {
-  //   cy.server()
-  //   cy.route('POST', '/register')
-  //     .as('postRegister')
-  //   cy.get('button[name=register]').click()
-  //   cy.wait('@postRegister')
-  //   cy.get('@postRegister').then(xhr => {
-  //     expect(xhr.url).to.include('register')
-  //   })
-  // })
-    // it('responds with status 400 if no email data is passed to server', () => {
-  //   cy.request({
-  //     method: 'POST',
-  //     url: serverRoute,
-  //     failOnStatusCode: false,
-  //     body: {
-  //       password: 'magicpassword123'
-  //     }
-  //   })
-  //     .then((response) => {
-  //       expect(response.status).to.eq(400)
-  //     })
-  // })
-  // it('responds with status 400 if no password data is passed to server ', () => {
-  //   cy.request({
-  //     method: 'POST',
-  //     url: serverRoute,
-  //     failOnStatusCode: false,
-  //     body: {
-  //       email: 'user@user.com'
-  //     }
-  //   })
-  //     .then((response) => {
-  //       expect(response.status).to.eq(400)
-  //     })
-  // })
+  it('requests register route on server when register button is clicked', () => {
+    cy.server()
+    cy.route('POST', '/register')
+      .as('postRegister')
+    cy.get('button[name=register]').click()
+    cy.wait('@postRegister')
+    cy.get('@postRegister').then(xhr => {
+      expect(xhr.url).to.include('register')
+    })
+  })
+    it('responds with status 400 if no email data is passed to server', () => {
+    cy.request({
+      method: 'POST',
+      url: serverRoute,
+      failOnStatusCode: false,
+      body: {
+        password: 'magicpassword123'
+      }
+    })
+      .then((response) => {
+        expect(response.status).to.eq(400)
+      })
+  })
+  it('responds with status 400 if no password data is passed to server ', () => {
+    cy.request({
+      method: 'POST',
+      url: serverRoute,
+      failOnStatusCode: false,
+      body: {
+        email: 'user@user.com'
+      }
+    })
+      .then((response) => {
+        expect(response.status).to.eq(400)
+      })
+  })
 })

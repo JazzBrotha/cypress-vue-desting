@@ -7,5 +7,3 @@ Simple testing in Vue.js using Cypress
 `npm run test`
 
 To record: `npm run record` 
-
-Note: `HTTP` request tests have been commented out to avoid issues with `Travis`, since the server is running on `localhost`. 
