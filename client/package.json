@@ -10,7 +10,8 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
     "test": "cypress open",
-    "record": "cypress run --record --key 1bbe91ca-1807-4f66-9fe2-2b9a9a8c197d"
+    "record": "cypress run --record --key 1bbe91ca-1807-4f66-9fe2-2b9a9a8c197d",
+    "server": "node ../server/src/app.js"
   },
   "dependencies": {
     "axios": "^0.17.1",
