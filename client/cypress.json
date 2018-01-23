@@ -1,4 +1,7 @@
 {
   "projectId": "yf7npb",
-  "baseUrl": "http://localhost:8080"
+  "env": {
+    "client" : "http://localhost:8080/#",
+    "server" : "http://localhost:8081"
+  }
 }

@@ -1,6 +1,7 @@
 describe('Nav link tests', () => {
+  const clientRoute = `${Cypress.env('client')}/`
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit(clientRoute)
   })
   it('Register element should exist', () => {
     cy.get('#register-link')
