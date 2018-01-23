@@ -21,7 +21,7 @@ before_script:
   ## we use the '&' ampersand which tells
   ## travis to run this process in the background
   ## else it would block execution and hang travis
-  - node ./server/app.js --silent &
+  - node ../server/src/app.js --silent &
   - npm start -- --silent &
 
 before_install: cd client
@@ -40,3 +40,6 @@ script:
   ## like this without having to
   ## configure environment variables
   ## - cypress run --record --key <your_record_key>
+
+notifications:
+  email: false
