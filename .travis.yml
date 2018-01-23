@@ -3,8 +3,10 @@ language: node_js
 node_js:
   - 8.0.0
 
+yarn: true
+
 install:
-  - npm install
+  - yarn
 
 before_script:
   ## runs the 'start' script which
@@ -21,8 +23,8 @@ before_script:
   ## we use the '&' ampersand which tells
   ## travis to run this process in the background
   ## else it would block execution and hang travis
-  - node ../server/src/app.js --silent &
-  - npm start -- --silent &
+  - yarn server
+  - yarn start -- --silent &
 
 before_install: cd client
 
@@ -33,7 +35,7 @@ script:
   ## CYPRESS_RECORD_KEY environment
   ## variable by default and apply
   ## this to the run.
-  - $(npm bin)/cypress run --record
+  - yarn record
 
   ## alternatively we could specify
   ## a specific record key to use
