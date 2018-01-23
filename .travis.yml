@@ -8,6 +8,11 @@ yarn: true
 install:
   - yarn
 
+cache:
+  directories:
+    - ./client/node_modules
+    - ./server/node_modules
+
 before_script:
   ## runs the 'start' script which
   ## boots our local app server on port 8080
@@ -23,10 +28,12 @@ before_script:
   ## we use the '&' ampersand which tells
   ## travis to run this process in the background
   ## else it would block execution and hang travis
-  - yarn server
+  - yarn server --silent &
   - yarn start -- --silent &
 
-before_install: cd client
+before_install:
+ - cd server
+ - cd client
 
 script:
   ## now run cypress headlessly
