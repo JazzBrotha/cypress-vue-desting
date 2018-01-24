@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "e2e": "cypress run --record --key 1bbe91ca-1807-4f66-9fe2-2b9a9a8c197d",
     "lint": "eslint --ext .js,.vue src test/unit ../cypress/integration/",
-    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov --token=81284e0a-18ba-4826-a298-681a9247b4fc",
     "server": "node ../server/src/app.js",
     "start": "npm run dev",
     "test": "npm run unit && npm run e2e",
