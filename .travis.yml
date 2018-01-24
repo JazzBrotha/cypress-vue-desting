@@ -6,6 +6,7 @@ node_js:
 yarn: true
 
 install:
+  - yarn global add codecov
   - yarn
 
 cache:
@@ -13,8 +14,8 @@ cache:
     node_modules
 
 before_script:
-  - yarn server --silent &
-  - yarn start --silent &
+  - yarn server -- --silent &
+  - yarn start -- --silent &
 
 before_install:
  - cd server
@@ -23,6 +24,8 @@ before_install:
  - cd client
 
 script:
+  - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov --token=:81284e0a-18ba-4826-a298-681a9247b4fc
+  - codecov
   - yarn record
 
 notifications:
