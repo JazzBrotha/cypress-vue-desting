@@ -6,6 +6,7 @@ node_js:
 yarn: true
 
 install:
+  - yarn global add codecov
   - yarn
 
 cache:
@@ -13,17 +14,19 @@ cache:
     node_modules
 
 before_script:
-  - yarn server --silent &
-  - yarn start --silent &
+  - yarn server -- --silent &
+  - yarn start -- --silent &
 
 before_install:
+ - yarn global add nyc
  - cd server
  - yarn
  - cd ..
  - cd client
 
 script:
-  - yarn record
+  - yarn test
+  - yarn report-coverage
 
 notifications:
   email: false
