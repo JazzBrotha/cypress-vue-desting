@@ -26,7 +26,6 @@ before_install:
 
 script:
   - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov --token=:81284e0a-18ba-4826-a298-681a9247b4fc
-  - codecov
   - yarn test
 
 notifications:
