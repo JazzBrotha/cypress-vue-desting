@@ -18,14 +18,13 @@ before_script:
   - yarn start -- --silent &
 
 before_install:
- - yarn global add istanbul
+ - yarn global add nyc
  - cd server
  - yarn
  - cd ..
  - cd client
 
 script:
-  - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov --token=81284e0a-18ba-4826-a298-681a9247b4fc
   - yarn test
 
 notifications:
