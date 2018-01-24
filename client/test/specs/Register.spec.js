@@ -3,17 +3,15 @@ import { shallow } from '@vue/test-utils'
 import Register from '../../src/components/Register.vue'
 
 describe('Register', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new Register'
-    const wrapper = shallow(Register, {
-      context: { props: { msg } }
-    })
-    expect(wrapper.text()).toBe(msg)
+  const email = ''
+  const wrapper = shallow(Register, {
+    propsData: { email }
   })
-
-  it('renders default Register if not passed a prop', () => {
-    const defaultRegister = 'default Register'
-    const wrapper = shallow(Register, {context: {}})
-    expect(wrapper.text()).toBe(defaultRegister)
+  const emailProp = wrapper.email
+  const emailInputField = wrapper.find('v-text-field')[0]
+  it('renders props.msg when passed', () => {
+    it("email input field should match component's email data", () => {
+      expect(emailInputField.text()).to.equal(emailProp)
+    })
   })
 })
