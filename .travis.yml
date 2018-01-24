@@ -6,6 +6,7 @@ node_js:
 yarn: true
 
 install:
+  - yarn global add istanbul
   - yarn global add codecov
   - yarn
 
