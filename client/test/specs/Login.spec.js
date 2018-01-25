@@ -59,4 +59,12 @@ describe('Login.vue', () => {
     const wrapper = shallow(Login)
     expect(wrapper.vm.email).toEqual('')
   })
+  it('has empty string email prop', () => {
+    const wrapper = shallow(Login)
+    expect(wrapper.vm.email).toEqual('')
+  })
+  it('has empty string password prop', () => {
+    const wrapper = shallow(Login)
+    expect(wrapper.vm.email).toEqual('')
+  })
 })
