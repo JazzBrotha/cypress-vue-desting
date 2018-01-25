@@ -4,25 +4,6 @@ describe('Login component', () => {
   beforeEach(() => {
     cy.visit(clientRoute)
   })
-  it('contains login button', () => {
-    cy.get('button[name="login"]')
-  })
-  it('contains input field email', () => {
-    cy.get('input[name="email"]')
-  })
-  it('contains input field password', () => {
-    cy.get('input[name="password"]')
-  })
-  it('sets correct value for email after input', () => {
-    cy.get('input[name="email"]')
-      .type('testuser@test.se')
-      .should('have.value', 'testuser@test.se')
-  })
-  it('sets correct value for password after input', () => {
-    cy.get('input[name="password"]')
-      .type('superpassword')
-      .should('have.value', 'superpassword')
-  })
   it('it returns correct error message if no input values are given', () => {
     cy.server({
       method: 'POST',
