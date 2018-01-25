@@ -51,5 +51,4 @@ describe('Register.vue', () => {
     wrapper.setMethods({ register: clickMethodStub })
     registerBtn.trigger('click')
     expect(clickMethodStub.called).toBe(true)
-  })
 })
