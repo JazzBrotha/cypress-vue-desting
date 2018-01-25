@@ -25,6 +25,7 @@
         <div id="register-error-message" class="danger-alert" v-html="error" />
         <br>
         <v-btn
+          id="register-btn"
           name="register"
           dark
           class="cyan"
