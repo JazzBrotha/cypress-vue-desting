@@ -21,3 +21,8 @@ To run only `Mocha`
 ```bash
 yarn unit
 ```
+
+To run `Mocha` with watch
+```bash
+yarn unit-watch
+```
