@@ -6,12 +6,14 @@
           name="tab-tracker-form"
           autocomplete="off">
           <v-text-field
+            id="email-input"
             name="email"
             label="Email"
             v-model="email"
           ></v-text-field>
           <br>
           <v-text-field
+            id="password-input"
             name="password"
             label="Password"
             type="password"
