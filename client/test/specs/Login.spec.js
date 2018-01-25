@@ -13,6 +13,11 @@ describe('Login.vue', () => {
     const emailInputField = wrapper.find('#email-input')
     expect(emailInputField.is('v-text-field')).toBe(true)
   })
+  it('contains password v-text-field', () => {
+    const wrapper = shallow(Login)
+    const passwordInputField = wrapper.find('#password-input')
+    expect(passwordInputField.is('v-text-field')).toBe(true)
+  })
   it('sets correct value for email after input', () => {
     const wrapper = shallow(Login)
     const emailInputField = wrapper.find('#email-input')
@@ -24,11 +29,6 @@ describe('Login.vue', () => {
     const passwordInputField = wrapper.find('#password-input')
     passwordInputField.value = 'superPassword123'
     expect(passwordInputField.value).toEqual('superPassword123')
-  })
-  it('contains password v-text-field', () => {
-    const wrapper = shallow(Login)
-    const passwordInputField = wrapper.find('#password-input')
-    expect(passwordInputField.is('v-text-field')).toBe(true)
   })
   it('email data matches email v-text-field value', () => {
     const wrapper = shallow(Login)
