@@ -21,6 +21,7 @@
         <div id="login-error-message" class="danger-alert" v-html="error" />
         <br>
         <v-btn
+          id="login-btn"
           name="login"
           dark
           class="cyan"
