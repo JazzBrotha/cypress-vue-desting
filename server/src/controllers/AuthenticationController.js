@@ -24,7 +24,7 @@ module.exports = {
     try {
       const user = await User.create(req.body)
       const userJson = user.toJSON()
-      res.send({
+      res.status(201).send({
         user: userJson,
         token: jwtSignUser(userJson)
       })

@@ -3,6 +3,7 @@ import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Register from '../../src/components/Register.vue'
 import sinon from 'sinon'
+import moxios from 'moxios'
 import flushPromises from 'flush-promises'
 
 const localVue = createLocalVue()
@@ -15,13 +16,16 @@ describe('Register.vue', () => {
 
   beforeEach(() => {
     actions = {
-      setUser: sinon.stub(),
-      actionInput: sinon.stub()
+      setUser: sinon.stub()
     }
     store = new Vuex.Store({
       state: {},
       actions
     })
+    moxios.install()
+  })
+  afterEach(() => {
+    moxios.uninstall()
   })
   it('contains email v-text-field', () => {
     const wrapper = shallow(Register)
@@ -85,18 +89,61 @@ describe('Register.vue', () => {
     registerBtn.trigger('click')
     expect(clickMethodStub.called).toBe(true)
   })
-  // it('calls store action "setUser" when register button is clicked', () => {
-  //   wrapper = shallow(Register, { store, localVue })
-  //   wrapper.setProps({ email: 'user@user.com' })
-  //   wrapper.setProps({ password: 'magicPassword123' })
-  //   registerBtn.trigger('click')
-  //   expect(actions.setUser.called).toBe(true)
-  // })
   it('sets email and password prop after axios request is made', async () => {
     const wrapper = shallow(Register)
+    wrapper.setProps({
+      email: 'user@user.com',
+      password: 'magicPassword123'
+    })
     const registerBtn = wrapper.find('#register-btn')
     registerBtn.trigger('click')
     await flushPromises()
     expect(wrapper.vm.email).toEqual('user@user.com')
+    expect(wrapper.vm.password).toEqual('magicPassword123')
   })
+  it('calls store action "setUser" when email and password are set', () => {
+    const wrapper = shallow(Register, { store, localVue })
+    wrapper.setProps({
+      email: 'user@user.com',
+      password: 'magicPassword123'
+    })
+    const registerForm = wrapper.find('#register-form')
+    registerForm.trigger('submit')
+    expect(actions.setUser.called).toBe(true)
+  })
+  it('stops store action "setUser" from being called when email and password are empty strings', () => {
+    const wrapper = shallow(Register, { store, localVue })
+    const registerForm = wrapper.find('#register-form')
+    registerForm.trigger('submit')
+    expect(actions.setUser.called).toBe(false)
+  })
+  // it('calls store action "setUser" when register button is clicked', () => {
+  //   const clickMethodStub = sinon.stub()
+  //   const wrapper = mount(Register, {
+  //     propsData: {
+  //       clickMethodStub
+  //     }
+  //   })
+  //   wrapper.trigger('click')
+  //   expect(clickMethodStub.called).toBe(true)
+  // })
+  // it('responds with error is email is already in use', () => {
+  //   const wrapper = shallow(Register)
+  //   const registerBtn = wrapper.find('#register-btn')
+  //   const emailInputField = wrapper.find('#email-input')
+  //   const passwordInputField = wrapper.find('#password-input')
+  //   emailInputField.value = 'user@user.com'
+  //   passwordInputField.value = 'magicPassword123'
+  //   registerBtn.trigger('click')
+  //   moxios.wait(() => {
+  //     const request = moxios.requests.mostRecent()
+  //     request.respondWith({
+  //       status: 200,
+  //       response: { id: 1, firstName: 'Fred', lastName: 'Flintstone' }
+  //     }).then(function () {
+  //       expect(wrapper.vm.email).toEqual('user@user.com')
+  //       done()
+  //     })
+  //   })
+  // })
 })
