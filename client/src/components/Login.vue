@@ -3,6 +3,7 @@
     <v-flex xs6 offset-xs3>
       <panel id="title-form" title="Login">
         <v-text-field
+          id="email-input"
           type="email"
           name="email"
           label="Email"
@@ -10,6 +11,7 @@
         ></v-text-field>
         <br>
         <v-text-field
+          id="password-input"
           name="password"
           label="Password"
           type="password"
@@ -19,6 +21,7 @@
         <div id="login-error-message" class="danger-alert" v-html="error" />
         <br>
         <v-btn
+          id="login-btn"
           name="login"
           dark
           class="cyan"
