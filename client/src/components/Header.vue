@@ -47,6 +47,7 @@
         Sign Up
       </v-btn>
       <v-btn
+        id="logout-btn"
         v-if="$store.state.isUserLoggedIn"
         flat
         dark
@@ -63,9 +64,9 @@ export default {
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
-      this.$router.push({
-        name: 'songs'
-      })
+      // this.$router.push({
+      //   name: 'songs'
+      // })
     }
   }
 }
