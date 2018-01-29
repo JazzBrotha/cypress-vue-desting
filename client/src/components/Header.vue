@@ -47,6 +47,7 @@
         Sign Up
       </v-btn>
       <v-btn
+        id="logout-btn"
         v-if="$store.state.isUserLoggedIn"
         flat
         dark
