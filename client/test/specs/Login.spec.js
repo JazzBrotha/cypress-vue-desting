@@ -88,10 +88,10 @@ describe('Login.vue', () => {
     expect(formTitle.text()).toEqual('Login')
   })
 
-  it('has empty string error prop', () => {
-    const wrapper = shallow(Login)
-    expect(wrapper.vm.email).toEqual('')
-  })
+  // it('has empty string error prop', () => {
+  //   const wrapper = shallow(Login)
+  //   expect(wrapper.vm.error).toEqual(null)
+  // })
 
   it('has empty string email prop', () => {
     const wrapper = shallow(Login)
@@ -100,7 +100,7 @@ describe('Login.vue', () => {
 
   it('has empty string password prop', () => {
     const wrapper = shallow(Login)
-    expect(wrapper.vm.email).toEqual('')
+    expect(wrapper.vm.password).toEqual('')
   })
 
   it('sets email and password prop after axios request is made', async () => {
@@ -112,7 +112,56 @@ describe('Login.vue', () => {
     const loginBtn = wrapper.find('#login-btn')
     loginBtn.trigger('click')
     await flushPromises()
+    const request = moxios.requests.mostRecent()
     expect(wrapper.vm.email).toEqual('lasse@gmail.com')
     expect(wrapper.vm.password).toEqual('superPassword123')
   })
+
+  // it('calls action setUser', () => {
+  //   const wrapper = shallow(Login, { store, localVue })
+  //   const loginBtn = wrapper.find('#login-btn')
+  //   loginBtn.trigger('click')
+  //   expect(actions.setUser.called).toBe(true)
+  // })
+
+  // it('sets token when user logs in', async () => {
+  //   const wrapper = shallow(Login)
+  //   wrapper.setData({
+  //     email: 'testing@gmail.com',
+  //     password: '12345678'
+  //   })
+  //   const loginBtn = wrapper.find('#login-btn')
+  //   loginBtn.trigger('click')
+  //   await flushPromises()
+  //   const request = moxios.requests.mostRecent()
+  //   console.log(request)
+  // })
+
+  // it('calls action "setUser" in store', async () => {
+  //   const wrapper = shallow(Login, { store, localVue })
+  //   await wrapper.setData({
+  //     email: 'lasse@gmail.com',
+  //     password: 'superPassword123'
+  //   })
+  //   const loginBtn = wrapper.find('#login-btn')
+  //   loginBtn.trigger('click')
+  //   expect(actions.setUser.mock.calls).toHaveLength(1)
+  //   expect(actions.setUser.mock.calls[0][1]).toEqual({ user: {
+  //     email: 'lasse@gmail.com',
+  //     password: 'superPassword123'
+  //   }})
+  // })
+
+  // it('sets email and password prop after axios request is made', async () => {
+  //   const wrapper = shallow(Login)
+  //   wrapper.setData({
+  //     email: 'lasse@gmail.com',
+  //     password: 'superPassword123'
+  //   })
+  //   const loginBtn = wrapper.find('#login-btn')
+  //   loginBtn.trigger('click')
+  //   await flushPromises()
+  //   expect(wrapper.vm.email).toEqual('lasse@gmail.com')
+  //   expect(wrapper.vm.password).toEqual('superPassword123')
+  // })
 })
