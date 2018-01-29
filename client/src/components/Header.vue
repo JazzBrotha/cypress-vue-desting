@@ -64,9 +64,9 @@ export default {
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
-      // this.$router.push({
-      //   name: 'songs'
-      // })
+      this.$router.push({
+        name: 'songs'
+      })
     }
   }
 }
