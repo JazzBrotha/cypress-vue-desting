@@ -2,7 +2,6 @@ import RecentlyViewedSongs from '../../src/components/Songs/RecentlyViewedSongs.
 import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import moxios from 'moxios'
-import sinon from 'sinon'
 
 const localVue = createLocalVue()
 
@@ -10,20 +9,14 @@ localVue.use(Vuex)
 
 describe('RecentlyViewedSongs.vue', () => {
   let store
-  let actions
 
   beforeEach(() => {
-    // actions = {
-    //   setToken: sinon.stub(),
-    //   setUser: sinon.stub()
-    // }
     store = new Vuex.Store({
       state: {
         token: 'amionog24Gm4iwogwgRgrrsvs',
         user: 'testing@gmail.com',
         isUserLoggedIn: true
       }
-      // actions
     })
     moxios.install()
   })
@@ -38,8 +31,9 @@ describe('RecentlyViewedSongs.vue', () => {
     shallow(RecentlyViewedSongs, {store, localVue})
     expect(store.state.isUserLoggedIn).toEqual(true)
   })
-  // it('calls mounted if user is logged in', () => {
-  //   const wrapper = shallow(RecentlyViewedSongs, {store, localVue})
-  //   expect(wrapper.vm.$options.mounted.called).toEqual(true)
-  // })
+  it('checks that histories have a length of 1', () => {
+    const wrapper = shallow(RecentlyViewedSongs, {store, localVue})
+    wrapper.setData({histories: ['abc']})
+    expect(wrapper.vm.histories).toHaveLength(1)
+  })
 })
