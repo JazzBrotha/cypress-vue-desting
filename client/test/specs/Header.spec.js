@@ -16,7 +16,8 @@ describe('Header.vue', () => {
     }
     store = new Vuex.Store({
       state: {
-        token: 'nuofiea',
+        token: 'amionog24Gm4iwogwgRgrrsvs',
+        user: 'testing@gmail.com',
         isUserLoggedIn: true
       },
       actions
@@ -59,9 +60,21 @@ describe('Header.vue', () => {
     const logoutBtn = wrapper.find('#logout-btn')
     logoutBtn.trigger('click')
     store.state.isUserLoggedIn = false
-    store.state.token = null
     expect(store.state.isUserLoggedIn).toEqual(false)
+  })
+  it('sets token to null in state', () => {
+    const wrapper = shallow(Header, { store })
+    const logoutBtn = wrapper.find('#logout-btn')
+    logoutBtn.trigger('click')
+    store.state.token = null
     expect(store.state.token).toEqual(null)
+  })
+  it('sets user to null in state', () => {
+    const wrapper = shallow(Header, { store })
+    const logoutBtn = wrapper.find('#logout-btn')
+    logoutBtn.trigger('click')
+    store.state.user = null
+    expect(store.state.user).toEqual(null)
   })
   // it('calls login method when clicking login button', () => {
   //   const wrapper = shallow(Login)
