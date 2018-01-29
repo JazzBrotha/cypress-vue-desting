@@ -75,9 +75,9 @@ export default {
           password: this.password
         }
         this.$store.dispatch('setUser', user)
-        }  
       }
-   }
+    }
+  }
 }
 </script>
 
