@@ -70,4 +70,12 @@ describe('Header.vue', () => {
     store.state.user = null
     expect(store.state.user).toEqual(null)
   })
+  it('should be on path "/songs" after logout call is made', () => {
+    const wrapper = shallow(Header, { store, localVue, router })
+    const logoutMethodStub = sinon.stub()
+    const logoutBtn = wrapper.find('#logout-btn')
+    wrapper.setMethods({ logout: logoutMethodStub })
+    logoutBtn.trigger('click')
+    expect(router.history.current.path).toEqual('/songs')
+  })
 })
