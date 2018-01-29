@@ -1,6 +1,6 @@
 import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import Songs from '../../src/components/Songs/Index.vue'
+import Songs from '../../src/components/Songs/SongsPanel.vue'
 import sinon from 'sinon'
 import axios from 'axios'
 import moxios from 'moxios'
@@ -9,7 +9,7 @@ const localVue = createLocalVue()
 
 localVue.use(Vuex)
 
-describe('SongsIndex.vue', () => {
+describe('SongsPanel.vue', () => {
   let store, state
   state = {
     isUserLoggedIn: true,
@@ -29,14 +29,12 @@ describe('SongsIndex.vue', () => {
     const wrapper = shallow(Songs, { store, localVue })
     expect(wrapper.vm.songs).toBe(null)
   })
-  it('contains the right amount of songs after axios call', (done) => {
+  it('fetches songs based on search value', () => {
     const wrapper = shallow(Songs, { store, localVue })
-    const onFulfilled = sinon.spy()
-    wrapper.setProps({ songs: ['Float On', 'abc', 'asdf', 'zzzzzz', 'asdf', 'Float On!'] })
-    axios.get('songs').then(onFulfilled)
-    moxios.wait(() => {
-      expect(wrapper.vm.songs).toHaveLength(6)
-      done()
+    wrapper.setProps({
+      search: 'float',
+      songs: ['Float On', 'Float On!']
     })
+    expect(wrapper.vm.songs).toHaveLength(2)
   })
 })
