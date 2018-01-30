@@ -31,7 +31,7 @@ describe('CreateSong.vue', () => {
     moxios.uninstall()
   })
   it('has created a hook for component', () => {
-    shallow(CreateSong, {store, localVue})
+    shallow(CreateSong, { store, localVue })
     expect(typeof CreateSong.methods.create).toBe('function')
   })
   it('should return error when all required fields are not filled in', async () => {
@@ -43,17 +43,9 @@ describe('CreateSong.vue', () => {
     wrapper.vm.error = 'Please fill in all the required fields.'
     expect(wrapper.vm.error).toEqual('Please fill in all the required fields.')
   })
-  it('contains an error prop equal to null', async () => {
+  it('contains an error prop equal to null', () => {
     moxios.uninstall()
     const wrapper = shallow(CreateSong)
     expect(wrapper.vm.error).toEqual(null)
   })
-  // it('contains song in props', () => {
-  //   const wrapper = shallow(CreateSong, {
-  //     propsData: {
-  //       song: {}
-  //     }
-  //   })
-  //   expect(wrapper.props()).toHaveProperty('song')
-  // })
 })
