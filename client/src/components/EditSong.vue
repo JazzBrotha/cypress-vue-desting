@@ -110,7 +110,8 @@ export default {
         return
       }
 
-      const songId = this.$store.state.route.params.songId
+      // const songId = this.$store.state.route.params.songId
+      const songId = '6'
       try {
         await SongsService.put(this.song)
         this.$router.push({
@@ -126,7 +127,8 @@ export default {
   },
   async mounted () {
     try {
-      const songId = this.$store.state.route.params.songId
+      // const songId = this.$store.state.route.params.songId
+      const songId = '6'
       this.song = (await SongsService.show(songId)).data
     } catch (err) {
       console.log(err)
