@@ -123,4 +123,12 @@ describe('Login.vue', () => {
     loginBtn.trigger('click')
     expect(router.history.current.path).toEqual('/songs')
   })
+  it('should return error if no password is given', () => {
+    moxios.uninstall()
+    const wrapper = shallow(Login, { store, localVue, router })
+    const loginBtn = wrapper.find('#login-btn')
+    loginBtn.trigger('click')
+    wrapper.vm.error = 'No password provided'
+    expect(wrapper.vm.error).toEqual('No password provided')
+  })
 })
