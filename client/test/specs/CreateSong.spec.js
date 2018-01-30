@@ -40,8 +40,8 @@ describe('CreateSong.vue', () => {
     const createBtn = wrapper.find('#create-btn')
     await wrapper.setData({ song: {} })
     createBtn.trigger('click')
-    wrapper.vm.error = 'Please fill in all the required fields.'
-    expect(wrapper.vm.error).toEqual('Please fill in all the required fields.')
+    wrapper.vm.error = 'an error has occured trying to create the song'
+    expect(wrapper.vm.error).toEqual('an error has occured trying to create the song')
   })
   it('contains an error prop equal to null', () => {
     moxios.uninstall()
