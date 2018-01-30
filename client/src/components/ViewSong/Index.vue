@@ -47,7 +47,6 @@ export default {
   async mounted () {
     const songId = this.route.params.songId
     this.song = (await SongsService.show(songId)).data
-
     if (this.isUserLoggedIn) {
       SongHistoryService.post({
         songId: songId

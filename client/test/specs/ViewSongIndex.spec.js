@@ -1,6 +1,10 @@
 import ViewSongIndex from '../../src/components/ViewSong/Index.vue'
 import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
+import moxios from 'moxios'
+import axios from 'axios'
+import sinon from 'sinon'
+import flushPromises from 'flush-promises'
 
 const localVue = createLocalVue()
 
@@ -13,10 +17,21 @@ describe('ViewSongIndex.vue', () => {
       state: {
         token: 'amionog24Gm4iwogwgRgrrsvs',
         user: 'testing@gmail.com',
-        isUserLoggedIn: true
+        isUserLoggedIn: true,
+        route: {
+          name: 'song',
+          params: {
+            songId: '6'
+          },
+          path: '/songs/6'
+        }
       },
       actions
     })
+    moxios.install()
+  })
+  afterEach(() => {
+    moxios.uninstall()
   })
   it('contains song in props', () => {
     const wrapper = shallow(ViewSongIndex, {
