@@ -70,6 +70,7 @@
       </div>
 
       <v-btn
+        id="create-btn"
         dark
         class="cyan"
         @click="create">
