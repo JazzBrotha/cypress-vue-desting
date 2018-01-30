@@ -3,27 +3,16 @@ import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import moxios from 'moxios'
 import sinon from 'sinon'
-import VueRouter from 'vue-router'
-import Songs from '../../src/components/Songs/Index.vue'
 
 const localVue = createLocalVue()
 
 localVue.use(Vuex)
-localVue.use(VueRouter)
 
 describe('CreateSong.vue', () => {
   let store
   let actions
-  let routes
-  let router
 
   beforeEach(() => {
-    routes = [
-      {
-        path: '/songs', name: 'songs', component: Songs
-      }
-    ]
-    router = new VueRouter({ routes })
     actions = {
       setToken: sinon.stub(),
       setUser: sinon.stub()
