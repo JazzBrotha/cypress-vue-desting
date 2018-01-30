@@ -70,6 +70,7 @@
       </div>
 
       <v-btn
+        id="edit-song-btn"
         dark
         class="cyan"
         @click="save">
@@ -110,8 +111,7 @@ export default {
         return
       }
 
-      // const songId = this.$store.state.route.params.songId
-      const songId = '6'
+      const songId = this.$store.state.route.params.songId
       try {
         await SongsService.put(this.song)
         this.$router.push({
@@ -127,8 +127,7 @@ export default {
   },
   async mounted () {
     try {
-      // const songId = this.$store.state.route.params.songId
-      const songId = '6'
+      const songId = this.$store.state.route.params.songId
       this.song = (await SongsService.show(songId)).data
     } catch (err) {
       console.log(err)
