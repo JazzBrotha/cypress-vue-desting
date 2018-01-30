@@ -1,8 +1,6 @@
 import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Songs from '../../src/components/Songs/SongsPanel.vue'
-import sinon from 'sinon'
-import axios from 'axios'
 import moxios from 'moxios'
 
 const localVue = createLocalVue()
