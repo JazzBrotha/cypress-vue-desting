@@ -59,4 +59,12 @@ describe('CreateSong.vue', () => {
     const wrapper = shallow(CreateSong)
     expect(wrapper.vm.error).toEqual(null)
   })
+  // it('contains song in props', () => {
+  //   const wrapper = shallow(CreateSong, {
+  //     propsData: {
+  //       song: {}
+  //     }
+  //   })
+  //   expect(wrapper.props()).toHaveProperty('song')
+  // })
 })
