@@ -70,6 +70,7 @@
       </div>
 
       <v-btn
+        id="create-btn"
         dark
         class="cyan"
         @click="create">
@@ -116,7 +117,7 @@ export default {
           name: 'songs'
         })
       } catch (err) {
-        console.log(err)
+        this.error = err.response.data.error
       }
     }
   }
