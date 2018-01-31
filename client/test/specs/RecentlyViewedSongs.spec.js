@@ -9,6 +9,7 @@ localVue.use(Vuex)
 
 describe('RecentlyViewedSongs.vue', () => {
   let store
+  let data
 
   beforeEach(() => {
     store = new Vuex.Store({
@@ -16,6 +17,23 @@ describe('RecentlyViewedSongs.vue', () => {
         token: 'amionog24Gm4iwogwgRgrrsvs',
         user: 'testing@gmail.com',
         isUserLoggedIn: true
+      },
+      data: {
+        headers: [
+          {
+            text: 'Title',
+            value: 'title'
+          },
+          {
+            text: 'Artist',
+            value: 'artist'
+          }
+        ],
+        pagination: {
+          sortBy: 'createdAt',
+          descending: true
+        },
+        histories: []
       }
     })
     moxios.install()
@@ -23,9 +41,11 @@ describe('RecentlyViewedSongs.vue', () => {
   afterEach(() => {
     moxios.uninstall()
   })
-  it('has created a hook for component', () => {
-    shallow(RecentlyViewedSongs, {store, localVue})
-    expect(typeof RecentlyViewedSongs.mounted).toBe('function')
+  it('checks all data values for component', () => {
+    shallow(RecentlyViewedSongs, { store, localVue, data })
+    expect(RecentlyViewedSongs.data()).toHaveProperty('headers')
+    expect(RecentlyViewedSongs.data()).toHaveProperty('pagination')
+    expect(RecentlyViewedSongs.data()).toHaveProperty('histories')
   })
   it('checks that user is logged in to be able to view this component', () => {
     shallow(RecentlyViewedSongs, {store, localVue})

@@ -31,7 +31,7 @@ describe('EditSong.vue', () => {
   afterEach(() => {
     moxios.uninstall()
   })
-  it('has created a hook for component', () => {
+  it('has save function in methods', () => {
     shallow(EditSong, {
       propsData: {
         song: {}
@@ -65,5 +65,19 @@ describe('EditSong.vue', () => {
       localVue
     })
     expect(wrapper.vm.error).toEqual(null)
+  })
+  it('contains required function for input fields', () => {
+    const wrapper = shallow(EditSong, { store, localVue })
+    expect(wrapper.vm.required).toBeTruthy()
+  })
+  it('returns "Required." for falsy values', () => {
+    const wrapper = shallow(EditSong, { store, localVue })
+    const value = wrapper.vm.required(null)
+    expect(value).toEqual('Required.')
+  })
+  it('returns true for truthy values', () => {
+    const wrapper = shallow(EditSong, { store, localVue })
+    const value = wrapper.vm.required('Hello')
+    expect(value).toEqual(true)
   })
 })

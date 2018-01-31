@@ -29,7 +29,7 @@ describe('SongsPanel.vue', () => {
   })
   it('fetches songs based on search value', () => {
     const wrapper = shallow(Songs, { store, localVue })
-    wrapper.setProps({
+    wrapper.setData({
       search: 'float',
       songs: ['Float On', 'Float On!']
     })

@@ -26,3 +26,5 @@ To run `Mocha` with watch
 ```bash
 yarn unit-watch
 ```
+
+Some test use real backend requests. To start the server navigate into `server` folder and run `yarn start`.

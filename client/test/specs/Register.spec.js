@@ -4,7 +4,6 @@ import Vuex from 'vuex'
 import Register from '../../src/components/Register.vue'
 import sinon from 'sinon'
 import moxios from 'moxios'
-import axios from 'axios'
 import flushPromises from 'flush-promises'
 
 const localVue = createLocalVue()
