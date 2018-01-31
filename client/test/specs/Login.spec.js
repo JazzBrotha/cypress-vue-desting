@@ -111,7 +111,6 @@ describe('Login.vue', () => {
     const loginBtn = wrapper.find('#login-btn')
     loginBtn.trigger('click')
     await flushPromises()
-    const request = moxios.requests.mostRecent()
     expect(wrapper.vm.email).toEqual('lasse@gmail.com')
     expect(wrapper.vm.password).toEqual('superPassword123')
   })

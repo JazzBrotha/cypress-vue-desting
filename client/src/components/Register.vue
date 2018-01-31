@@ -6,7 +6,7 @@
           id="register-form"
           name="tab-tracker-form"
           autocomplete="off"
-          @submit="setUserInStore">
+        >
           <v-text-field
             id="email-input"
             name="email"
@@ -57,24 +57,13 @@ export default {
           email: this.email,
           password: this.password
         })
-        this.email = response.data.user.email
-        this.password = response.data.user.password
-        // this.$store.dispatch('setUser', response.data.user)
-        // this.$store.dispatch('setToken', response.data.token)
-        // this.$router.push({
-        //   name: 'songs'
-        // })
+        this.$store.dispatch('setUser', response.data.user)
+        this.$store.dispatch('setToken', response.data.token)
+        this.$router.push({
+          name: 'songs'
+        })
       } catch (error) {
         this.error = error.response.data.error
-      }
-    },
-    setUserInStore () {
-      if (this.email && this.password) {
-        const user = {
-          email: this.email,
-          password: this.password
-        }
-        this.$store.dispatch('setUser', user)
       }
     }
   }
