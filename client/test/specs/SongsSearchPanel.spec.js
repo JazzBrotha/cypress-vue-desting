@@ -25,17 +25,17 @@ describe('SongsSearchPanel.vue', () => {
   })
   it('sets songs to be empty string at mount', () => {
     const wrapper = shallow(SongsSearchPanel)
-    wrapper.setProps({
+    wrapper.setData({
       search: ''
     })
     expect(wrapper.vm.search).toBe('')
   })
-  it('fetches songs based on search value', () => {
+  it('sets search data based on search input value', () => {
     const wrapper = shallow(SongsSearchPanel, { store, localVue })
-    wrapper.setProps({
-      search: 'float',
-      songs: ['Float On', 'Float On!']
-    })
-    expect(wrapper.vm.songs).toHaveLength(2)
+    const searchInput = wrapper.find('#songs-search-input')
+    searchInput.value = 'float'
+    searchInput.trigger('input')
+    wrapper.setData({ search: searchInput.value })
+    expect(wrapper.vm.search).toEqual('float')
   })
 })

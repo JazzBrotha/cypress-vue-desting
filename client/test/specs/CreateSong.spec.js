@@ -30,10 +30,6 @@ describe('CreateSong.vue', () => {
   afterEach(() => {
     moxios.uninstall()
   })
-  it('has created a hook for component', () => {
-    shallow(CreateSong, { store, localVue })
-    expect(typeof CreateSong.methods.create).toBe('function')
-  })
   it('should return error when all required fields are not filled in', async () => {
     moxios.uninstall()
     const wrapper = shallow(CreateSong, { store, localVue })
@@ -44,8 +40,21 @@ describe('CreateSong.vue', () => {
     expect(wrapper.vm.error).toEqual('an error has occured trying to create the song')
   })
   it('contains an error prop equal to null', () => {
-    moxios.uninstall()
     const wrapper = shallow(CreateSong)
     expect(wrapper.vm.error).toEqual(null)
+  })
+  it('contains required function for input fields', () => {
+    const wrapper = shallow(CreateSong)
+    expect(wrapper.vm.required).toBeTruthy()
+  })
+  it('returns "Required." for falsy values', () => {
+    const wrapper = shallow(CreateSong)
+    const value = wrapper.vm.required(null)
+    expect(value).toEqual('Required.')
+  })
+  it('returns true for truthy values', () => {
+    const wrapper = shallow(CreateSong)
+    const value = wrapper.vm.required('Hello')
+    expect(value).toEqual(true)
   })
 })
