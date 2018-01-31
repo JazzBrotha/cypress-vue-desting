@@ -1,6 +1,7 @@
 <template>
   <panel title="Search">
     <v-text-field
+      id="songs-search-input"
       label="Search by song title, artist, album, or genre"
       v-model="search"
     ></v-text-field>
@@ -41,3 +42,4 @@ export default {
 <style>
 
 </style>
+``

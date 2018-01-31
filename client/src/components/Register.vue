@@ -6,7 +6,7 @@
           id="register-form"
           name="tab-tracker-form"
           autocomplete="off"
-          @submit="setUserInStore">
+        >
           <v-text-field
             id="email-input"
             name="email"

@@ -70,6 +70,7 @@
       </div>
 
       <v-btn
+        id="edit-song-btn"
         dark
         class="cyan"
         @click="save">
