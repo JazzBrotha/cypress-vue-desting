@@ -19,6 +19,7 @@ before_script:
 
 before_install:
  - cd server
+ - yarn seed
  - yarn
  - cd ..
  - cd client

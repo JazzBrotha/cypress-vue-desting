@@ -49,7 +49,7 @@ describe('Login component', () => {
   })
   it('logs in a user successfully', () => {
     cy.server()
-    cy.route('POST', '/login')
+    cy.route('POST', serverRoute)
       .as('postLogin')
     cy.get('#email-input').type('testing@gmail.com')
     cy.get('#password-input').type('12345678')
