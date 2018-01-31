@@ -57,7 +57,6 @@ module.exports = {
       })
       res.send(newBookmark)
     } catch (err) {
-      console.log(err)
       res.status(500).send({
         error: 'an error has occured trying to create the bookmark'
       })
