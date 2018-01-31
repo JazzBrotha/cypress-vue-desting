@@ -94,7 +94,7 @@ export default {
           songId: this.song.id
         })).data
       } catch (err) {
-        this.error = err.response.data.error
+        this.error = err
       }
     },
     async unsetAsBookmark () {
@@ -102,7 +102,7 @@ export default {
         await BookmarksService.delete(this.bookmark.id)
         this.bookmark = null
       } catch (err) {
-        // console.log(err)
+        console.log(err)
       }
     }
   }
