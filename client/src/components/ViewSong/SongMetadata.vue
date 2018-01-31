@@ -32,14 +32,6 @@
           @click="setAsBookmark">
           Set As Bookmark
         </v-btn>
-        <v-btn
-          id="delete-song"
-          v-if="isUserLoggedIn && bookmark"
-          dark
-          class="cyan"
-          @click="unsetAsBookmark">
-          Unset As Bookmark
-        </v-btn>
       </v-flex>
       <v-flex xs6>
         <img class="album-image" :src="song.albumImageUrl" />
@@ -95,14 +87,6 @@ export default {
         })).data
       } catch (err) {
         this.error = err
-      }
-    },
-    async unsetAsBookmark () {
-      try {
-        await BookmarksService.delete(this.bookmark.id)
-        this.bookmark = null
-      } catch (err) {
-        console.log(err)
       }
     }
   }
