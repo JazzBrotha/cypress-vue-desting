@@ -25,6 +25,7 @@
           Edit
         </v-btn>
         <v-btn
+          id="set-bookmark"
           v-if="isUserLoggedIn && !bookmark"
           dark
           class="cyan"
@@ -32,6 +33,7 @@
           Set As Bookmark
         </v-btn>
         <v-btn
+          id="delete-song"
           v-if="isUserLoggedIn && bookmark"
           dark
           class="cyan"
@@ -92,7 +94,7 @@ export default {
           songId: this.song.id
         })).data
       } catch (err) {
-        console.log(err)
+        this.error = err
       }
     },
     async unsetAsBookmark () {
