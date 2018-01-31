@@ -10,7 +10,7 @@
     "e2e": "cypress run --record --key 1bbe91ca-1807-4f66-9fe2-2b9a9a8c197d",
     "lint": "eslint --ext .js,.vue src test/unit ../cypress/integration/",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov --token=81284e0a-18ba-4826-a298-681a9247b4fc",
-    "server": "cd ../server && node seed && node app.js && cd .. && cd client",
+    "server": "cd ../server && node seed && node src/app.js && cd .. && cd client",
     "start": "npm run dev",
     "test": "npm run unit && npm run e2e",
     "unit": "cross-env BABEL_ENV=test NODE_ENV=test nyc mocha-webpack --webpack-config ./build/webpack.test.conf.js --require test/setup.js test/**/*.spec.js",
