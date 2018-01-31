@@ -3,26 +3,17 @@ describe('Nav link tests', () => {
   beforeEach(() => {
     cy.visit(clientRoute)
   })
-  it('Register element should exist', () => {
-    cy.get('#register-link')
-  })
-  it('Login element should exist', () => {
-    cy.get('#login-link')
-  })
-  it('Browse element should exist', () => {
-    cy.get('#browse-link')
-  })
-  it('Correct register link', () => {
+  it('Redirects to correct page when clicking register link', () => {
     cy.get('#register-link').click()
     cy.url()
       .should('include', '/register')
   })
-  it('Correct login link', () => {
+  it('Redirects to correct page when clicking login link', () => {
     cy.get('#login-link').click()
     cy.url()
       .should('include', '/login')
   })
-  it('Correct browse link', () => {
+  it('Redirects to correct page when clicking browse link', () => {
     cy.get('#browse-link').click()
     cy.url()
       .should('include', '/songs')

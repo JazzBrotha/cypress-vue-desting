@@ -14,9 +14,6 @@ describe('Login component', () => {
       }
     })
     cy.route('/login/')
-    //   .as('postLogin')
-    // cy.wait('@postLogin')
-    // cy.get('@postLogin')
       .its('response')
       .should('have.property', 'error', 'No password provided')
   })
@@ -50,19 +47,16 @@ describe('Login component', () => {
       .its('response')
       .should('have.property', 'error', 'No password provided')
   })
-  // it('responds with status 403 if no user was found', () => {
-  //   cy.request({
-  //     method: 'POST',
-  //     url: serverRoute,
-  //     failOnStatusCode: false,
-  //     body: {
-  //       email: 'testuser@test.se',
-  //       password: 'superpassword'
-  //     }
-  //   })
-
-  //   .then((response) => {
-  //     expect(response.status).to.eq(403)
-  //   })
-  // })
+  it('logs in a user successfully', () => {
+    cy.server()
+    cy.route('POST', '/login')
+      .as('postLogin')
+    cy.get('#email-input').type('testing@gmail.com')
+    cy.get('#password-input').type('12345678')
+    cy.get('#login-btn').click()
+    cy.wait('@postLogin')
+    cy.get('@postLogin').then(response => {
+      expect(response.status).to.eq(200)
+    })
+  })
 })
