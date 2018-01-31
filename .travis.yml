@@ -18,11 +18,10 @@ before_script:
   - yarn start -- --silent &
 
 before_install:
- - cd server
- - yarn
- - yarn seed
- - cd ..
- - cd client
+  - cd server
+  - yarn
+  - cd ..
+  - cd client
 
 script:
   - yarn test
